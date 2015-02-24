@@ -9,6 +9,13 @@
 
 #define IDT_ENTRIES 256
 
+//CONSTANTS
+#define KEYBOARD_PORT 0X60
+
+//IDT ENTRIES
+#define IDTENTRY_KEYBOARD 33
+#define IDTENTRY_SYSTEM_CALL 0x80
+
 extern Gate idt[IDT_ENTRIES];
 extern Register idtR;
 
@@ -16,5 +23,7 @@ void setInterruptHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
 void setTrapHandler(int vector, void (*handler)(), int maxAccessibleFromPL);
 
 void setIdt();
+
+void keyboard_rsi();
 
 #endif  /* __INTERRUPT_H__ */

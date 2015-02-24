@@ -6,6 +6,7 @@
 #include <segment.h>
 #include <hardware.h>
 #include <io.h>
+#include <entry.h>
 
 #include <zeos_interrupt.h>
 
@@ -82,8 +83,30 @@ void setIdt()
   
   set_handlers();
 
-  /* ADD INITIALIZATION CODE FOR INTERRUPT VECTOR */
+  /* INITIALIZATION CODE FOR INTERRUPT VECTOR */
+  setInterruptHandler(IDTENTRY_KEYBOARD, keyboard_handler, 0);
+
+  setTrapHandler(IDTENTRY_SYSTEM_CALL, system_call_handler, 3);
 
   set_idt_reg(&idtR);
+}
+
+//RSI
+
+void keyboard_rsi() {
+  unsigned char key, keychar;
+
+  key = inb(KEYBOARD_PORT);
+  
+  if (key & 0x80) { //b1000000 key MAKE mask)
+    key &= 0x7F; //b01111111 key CHAR mask 
+    
+    keychar = char_map[key]; //keypressed in ascii
+    
+    if ((keychar > 31) && (keychar != 127)) //is not ascii control code
+      printc_xy(0, 0, keychar);
+    else
+      printc_xy(0, 0, 'C');
+  }
 }
 

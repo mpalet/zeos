@@ -5,4 +5,8 @@
 #ifndef __ENTRY_H__
 #define __ENTRY_H__
 
+// interrupt handlers
+void keyboard_handler();
+void system_call_handler();
+
 #endif  /* __ENTRY_H__ */
