@@ -86,6 +86,7 @@ void setIdt()
   /* INITIALIZATION CODE FOR INTERRUPT VECTOR */
   setInterruptHandler(IDTENTRY_KEYBOARD, keyboard_handler, 0);
 
+  /* INITIALIZATION CODE FOR SYSTEM CALL */
   setTrapHandler(IDTENTRY_SYSTEM_CALL, system_call_handler, 3);
 
   set_idt_reg(&idtR);

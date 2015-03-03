@@ -4,6 +4,7 @@
 
 #include <asm.h>
 #include <segment.h>
+#include <codes.h>
 
 
 /**************************************************/
@@ -68,8 +69,6 @@
   movb $0x20, %al ; \
   outb %al, $0x20 ;
 
-//ERROR CODES
-#define ENOSYS 38
 
 //INTERRUPTION HANDLERS
 
@@ -80,16 +79,6 @@ ENTRY(keyboard_handler)
   call keyboard_rsi
   RESTORE_ALL                        // Restore the context
   iret
-
-//SYSTEM CALLS
-ENTRY (sys_call_table)
-        .long sys_ni_syscall    // 0
-        .long sys_ni_syscall    // 1
-        .long sys_ni_syscall    // 2
-        .long sys_ni_syscall    // 3
-        .long sys_write         // 4
-.globl MAX_SYSCALL
-MAX_SYSCALL = (. - sys_call_table)/4
 
 //system_call_handler
 ENTRY(system_call_handler)
