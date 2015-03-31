@@ -22,7 +22,13 @@ struct task_struct *list_head_to_task_struct(struct list_head *l)
 }
 #endif
 
+/* Task Scheduling queues */
+struct list_head freequeue;
+struct list_head readyqueue;
 extern struct list_head blocked;
+
+/* idle task */
+struct task_struct * idle_task;
 
 
 /* get_DIR - Returns the Page Directory address for task 't' */
@@ -51,7 +57,7 @@ int allocate_DIR(struct task_struct *t)
 
 void cpu_idle(void)
 {
-	__asm__ __volatile__("sti": : :"memory");
+	__asm__ __volatile__("sti": : :"memory"); //activa interrupcions
 
 	while(1)
 	{
@@ -61,7 +67,37 @@ void cpu_idle(void)
 
 void init_idle (void)
 {
+	struct list_head * e;
+	unsigned long * stack_base;
 
+	/*	
+	Get an available task_union from the freequeue to 
+	contain the idle_process
+	*/
+	e = list_first(&freequeue);
+	idle_task = list_entry(e, struct task_struct, list);
+	list_del(e);
+
+	idle_task->PID = 0;
+	
+	/*
+	Initialize field dir_pages_baseAaddr with a new directory to store
+	the process address space
+	*/
+	allocate_DIR(idle_task); 
+	//TODO: cal allocate memoria física????
+
+	/*
+	Initialize an execution context for the procees to restore it when it
+	gets assigned the cpu and executes cpu_idle.
+	*/
+	stack_base = (unsigned long *) idle_task + KERNEL_STACK_SIZE -1;
+
+	*stack_base = cpu_idle;
+	*stack_base--;
+	*stack_base = 0;
+
+	idle_task->kernel_esp = stack_base;
 }
 
 void init_task1(void)
@@ -69,8 +105,22 @@ void init_task1(void)
 }
 
 
+//init scheduling
 void init_sched(){
+	int i;
+	
+	/* freequeue initialitzation: 
+	   Add all tasks to the free queueu
+	*/
+	INIT_LIST_HEAD(&freequeue);
 
+	for (i=0; i< NR_TASKS; ++i)
+		list_add(&(task[i].task.list), &freequeue);
+
+	/* readyqueue initialization:
+	   queue is empty
+	*/
+	INIT_LIST_HEAD(&readyqueue);
 }
 
 struct task_struct* current()

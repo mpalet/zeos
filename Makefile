@@ -9,10 +9,10 @@ AS86	= as86 -0 -a
 LD86	= ld86 -0
 
 HOSTCFLAGS = -Wall -Wstrict-prototypes -g
-HOSTCC 	= gcc
-CC      = gcc
-AS      = as
-LD      = ld
+HOSTCC 	= gcc -m32
+CC      = gcc -m32
+AS      = as -32
+LD      = ld -melf_i386
 OBJCOPY = objcopy -O binary -R .note -R .comment -S
 
 INCLUDEDIR = include
@@ -20,7 +20,7 @@ INCLUDEDIR = include
 # Define here flags to compile the tests if needed
 JP =
 
-CFLAGS = -O2  -g $(JP) -fno-omit-frame-pointer -ffreestanding -Wall -I$(INCLUDEDIR)
+CFLAGS = -O2  -g $(JP) -fno-omit-frame-pointer -ffreestanding -Wall -I$(INCLUDEDIR) -march=pentium -m32
 ASMFLAGS = -I$(INCLUDEDIR)
 SYSLDFLAGS = -T system.lds
 USRLDFLAGS = -T user.lds

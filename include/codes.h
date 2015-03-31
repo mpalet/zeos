@@ -8,11 +8,12 @@
 
 //ERROR CODES
 #define ENOSYS 38 //NO SYSTEM CALL
-#define EBADBUF 1 //invalid buffer
-#define ENEGSIZE 1 //negative size
-#define EUSERMEMCOPY 1 //error accessing user memory
+#define EBADBUF 50 //invalid buffer
+#define ENEGSIZE 60 //negative size
+#define EUSERMEMCOPY 70 //error accessing user memory
 
 //SYSCALL CODES
 #define SYSCALL_WRITE 4
+#define SYSCALL_GETTIME 10
 
 #endif  /* __CODES_H__ */

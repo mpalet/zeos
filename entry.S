@@ -70,7 +70,13 @@
   outb %al, $0x20 ;
 
 
-//INTERRUPTION HANDLERS
+//clock
+ENTRY(clock_handler)
+  SAVE_ALL                           // Save the current context
+  EOI
+  call clock_rsi
+  RESTORE_ALL                        // Restore the context
+  iret
 
 //keyboard
 ENTRY(keyboard_handler)

@@ -58,6 +58,12 @@ return: Negative number in case of error (specifying the kind of error) and the 
 #define BUFFERSIZE 1024
 unsigned char dest[BUFFERSIZE];
 
+//GET TIME
+int sys_gettime() {
+  return get_zeos_clock();
+}
+
+//SYSTEM WRITE
 int sys_write(int fd, char * buffer, int size) {
   int res;
   

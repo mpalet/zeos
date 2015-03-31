@@ -20,3 +20,4 @@ mouse: enabled=0
 private_colormap: enabled=0
 keyboard_mapping: enabled=0, map=
 
+display_library: sdl

@@ -72,11 +72,14 @@ int __attribute__((__section__(".text.main")))
 
   printk("Kernel Loaded!    "); 
 
+  //Initialize clock (before enabling interrupts)
+  init_clock();
+  
   /* Initialize hardware data */
   setGdt(); /* Definicio de la taula de segments de memoria */
   setIdt(); /* Definicio del vector de interrupcions */
   setTSS(); /* Definicio de la TSS */
-
+  
   /* Initialize Memory */
   init_mm();
 

@@ -44,6 +44,26 @@ int strlen(char *a)
 }
 
 
+//error handling
+void perror() {
+  switch(errno) {
+    case -ENOSYS:
+      write(1,"Invalid system call\n",18);
+    break;
+    case -EBADBUF:
+      write(1,"Bad buffer         \n",18);
+    break;
+    case -ENEGSIZE:
+      write(1,"Negative size      \n",18);
+    break;
+    case -EUSERMEMCOPY:
+      write(1,"Error accessing user mem\n",20);
+    break;
+    default:
+      write(1,"Invalid error code      \n",20);
+  }
+}
+
 
 //SYS CALL HANDLERS ROUTINES
 int generate_sys_trap(int syscall_number, int arg1, int arg2, int arg3) {
@@ -63,7 +83,18 @@ int generate_sys_trap(int syscall_number, int arg1, int arg2, int arg3) {
 int write (int fd, char * buffer, int size) {
   int res = generate_sys_trap(SYSCALL_WRITE, fd, (int)buffer, size);
   
-  if (res > 0)
+  if (res >= 0)
+    return res;
+  else {
+    errno = res;
+    return -1;
+  }
+}
+
+int gettime() {
+  int res = generate_sys_trap(SYSCALL_GETTIME, 0, 0, 0);
+  
+  if (res >= 0)
     return res;
   else {
     errno = res;

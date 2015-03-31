@@ -14,6 +14,7 @@
 
 //IDT ENTRIES
 #define IDTENTRY_KEYBOARD 33
+#define IDTENTRY_CLOCK 32
 #define IDTENTRY_SYSTEM_CALL 0x80
 
 extern Gate idt[IDT_ENTRIES];
@@ -25,5 +26,9 @@ void setTrapHandler(int vector, void (*handler)(), int maxAccessibleFromPL);
 void setIdt();
 
 void keyboard_rsi();
+void clock_rsi();
+
+void init_clock();
+int get_zeos_clock();
 
 #endif  /* __INTERRUPT_H__ */

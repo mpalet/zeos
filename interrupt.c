@@ -30,6 +30,8 @@ char char_map[] =
   '\0','\0'
 };
 
+int zeos_ticks;
+
 void setInterruptHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
 {
   /***********************************************************************/
@@ -85,6 +87,7 @@ void setIdt()
 
   /* INITIALIZATION CODE FOR INTERRUPT VECTOR */
   setInterruptHandler(IDTENTRY_KEYBOARD, keyboard_handler, 0);
+  setInterruptHandler(IDTENTRY_CLOCK, clock_handler, 0);
 
   /* INITIALIZATION CODE FOR SYSTEM CALL */
   setTrapHandler(IDTENTRY_SYSTEM_CALL, system_call_handler, 3);
@@ -109,5 +112,22 @@ void keyboard_rsi() {
     else
       printc_xy(0, 0, 'C');
   }
+}
+
+void clock_rsi() {
+  zeos_ticks++;
+  zeos_show_clock();
+}
+
+
+//AUX ROUTINES
+
+//init clock - ticks=0
+void init_clock() {
+  zeos_ticks=0;
+}
+
+int get_zeos_clock() {
+  return zeos_ticks;
 }
 
