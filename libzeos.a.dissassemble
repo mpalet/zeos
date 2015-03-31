@@ -1,0 +1,980 @@
+In archive libzeos.a:
+
+zeos_interrupt.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <itoa>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	57                   	push   %edi
+   4:	56                   	push   %esi
+   5:	53                   	push   %ebx
+   6:	8b 4d 08             	mov    0x8(%ebp),%ecx
+   9:	83 f9 00             	cmp    $0x0,%ecx
+   c:	75 0b                	jne    19 <itoa+0x19>
+   e:	8b 45 0c             	mov    0xc(%ebp),%eax
+  11:	c6 00 30             	movb   $0x30,(%eax)
+  14:	5b                   	pop    %ebx
+  15:	5e                   	pop    %esi
+  16:	5f                   	pop    %edi
+  17:	5d                   	pop    %ebp
+  18:	c3                   	ret    
+  19:	7e f9                	jle    14 <itoa+0x14>
+  1b:	31 db                	xor    %ebx,%ebx
+  1d:	be 67 66 66 66       	mov    $0x66666667,%esi
+  22:	89 c8                	mov    %ecx,%eax
+  24:	f7 ee                	imul   %esi
+  26:	c1 fa 02             	sar    $0x2,%edx
+  29:	89 c8                	mov    %ecx,%eax
+  2b:	c1 f8 1f             	sar    $0x1f,%eax
+  2e:	29 c2                	sub    %eax,%edx
+  30:	8d 04 92             	lea    (%edx,%edx,4),%eax
+  33:	01 c0                	add    %eax,%eax
+  35:	29 c1                	sub    %eax,%ecx
+  37:	8d 41 30             	lea    0x30(%ecx),%eax
+  3a:	8b 4d 0c             	mov    0xc(%ebp),%ecx
+  3d:	88 04 19             	mov    %al,(%ecx,%ebx,1)
+  40:	89 d1                	mov    %edx,%ecx
+  42:	83 c3 01             	add    $0x1,%ebx
+  45:	85 d2                	test   %edx,%edx
+  47:	7f d9                	jg     22 <itoa+0x22>
+  49:	89 d8                	mov    %ebx,%eax
+  4b:	c1 e8 1f             	shr    $0x1f,%eax
+  4e:	8d 3c 18             	lea    (%eax,%ebx,1),%edi
+  51:	d1 ff                	sar    %edi
+  53:	85 ff                	test   %edi,%edi
+  55:	7e bd                	jle    14 <itoa+0x14>
+  57:	03 5d 0c             	add    0xc(%ebp),%ebx
+  5a:	31 f6                	xor    %esi,%esi
+  5c:	8b 55 0c             	mov    0xc(%ebp),%edx
+  5f:	8d 04 16             	lea    (%esi,%edx,1),%eax
+  62:	0f b6 08             	movzbl (%eax),%ecx
+  65:	0f b6 53 ff          	movzbl -0x1(%ebx),%edx
+  69:	88 10                	mov    %dl,(%eax)
+  6b:	88 4b ff             	mov    %cl,-0x1(%ebx)
+  6e:	83 c6 01             	add    $0x1,%esi
+  71:	83 eb 01             	sub    $0x1,%ebx
+  74:	39 fe                	cmp    %edi,%esi
+  76:	75 e4                	jne    5c <itoa+0x5c>
+  78:	5b                   	pop    %ebx
+  79:	5e                   	pop    %esi
+  7a:	5f                   	pop    %edi
+  7b:	5d                   	pop    %ebp
+  7c:	c3                   	ret    
+
+0000007d <printc_xy.935>:
+  7d:	55                   	push   %ebp
+  7e:	89 e5                	mov    %esp,%ebp
+  80:	66 0f b6 c9          	movzbw %cl,%cx
+  84:	80 cd 02             	or     $0x2,%ch
+  87:	0f b6 d2             	movzbl %dl,%edx
+  8a:	8d 14 92             	lea    (%edx,%edx,4),%edx
+  8d:	c1 e2 04             	shl    $0x4,%edx
+  90:	0f b6 c0             	movzbl %al,%eax
+  93:	01 c2                	add    %eax,%edx
+  95:	01 d2                	add    %edx,%edx
+  97:	81 c2 00 80 0b 00    	add    $0xb8000,%edx
+  9d:	66 89 0a             	mov    %cx,(%edx)
+  a0:	5d                   	pop    %ebp
+  a1:	c3                   	ret    
+
+000000a2 <zeos_show_clock>:
+  a2:	55                   	push   %ebp
+  a3:	89 e5                	mov    %esp,%ebp
+  a5:	83 ec 18             	sub    $0x18,%esp
+  a8:	a1 00 00 00 00       	mov    0x0,%eax
+  ad:	83 c0 01             	add    $0x1,%eax
+  b0:	a3 00 00 00 00       	mov    %eax,0x0
+  b5:	83 f8 12             	cmp    $0x12,%eax
+  b8:	74 02                	je     bc <zeos_show_clock+0x1a>
+  ba:	c9                   	leave  
+  bb:	c3                   	ret    
+  bc:	a1 00 00 00 00       	mov    0x0,%eax
+  c1:	83 c0 01             	add    $0x1,%eax
+  c4:	a3 00 00 00 00       	mov    %eax,0x0
+  c9:	c7 05 00 00 00 00 00 	movl   $0x0,0x0
+  d0:	00 00 00 
+  d3:	83 f8 3c             	cmp    $0x3c,%eax
+  d6:	0f 84 10 01 00 00    	je     1ec <zeos_show_clock+0x14a>
+  dc:	8b 15 00 00 00 00    	mov    0x0,%edx
+  e2:	8d 45 fc             	lea    -0x4(%ebp),%eax
+  e5:	89 44 24 04          	mov    %eax,0x4(%esp)
+  e9:	89 14 24             	mov    %edx,(%esp)
+  ec:	e8 fc ff ff ff       	call   ed <zeos_show_clock+0x4b>
+  f1:	8d 45 f8             	lea    -0x8(%ebp),%eax
+  f4:	89 44 24 04          	mov    %eax,0x4(%esp)
+  f8:	a1 00 00 00 00       	mov    0x0,%eax
+  fd:	89 04 24             	mov    %eax,(%esp)
+ 100:	e8 fc ff ff ff       	call   101 <zeos_show_clock+0x5f>
+ 105:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 10c:	7e 6e                	jle    17c <zeos_show_clock+0xda>
+ 10e:	0f be 4d fc          	movsbl -0x4(%ebp),%ecx
+ 112:	31 d2                	xor    %edx,%edx
+ 114:	b8 46 00 00 00       	mov    $0x46,%eax
+ 119:	e8 5f ff ff ff       	call   7d <printc_xy.935>
+ 11e:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 125:	7e 6f                	jle    196 <zeos_show_clock+0xf4>
+ 127:	0f be 4d fd          	movsbl -0x3(%ebp),%ecx
+ 12b:	31 d2                	xor    %edx,%edx
+ 12d:	b8 47 00 00 00       	mov    $0x47,%eax
+ 132:	e8 46 ff ff ff       	call   7d <printc_xy.935>
+ 137:	b9 3a 00 00 00       	mov    $0x3a,%ecx
+ 13c:	31 d2                	xor    %edx,%edx
+ 13e:	b8 48 00 00 00       	mov    $0x48,%eax
+ 143:	e8 35 ff ff ff       	call   7d <printc_xy.935>
+ 148:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 14f:	7e 6f                	jle    1c0 <zeos_show_clock+0x11e>
+ 151:	0f be 4d f8          	movsbl -0x8(%ebp),%ecx
+ 155:	31 d2                	xor    %edx,%edx
+ 157:	b8 49 00 00 00       	mov    $0x49,%eax
+ 15c:	e8 1c ff ff ff       	call   7d <printc_xy.935>
+ 161:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 168:	7e 70                	jle    1da <zeos_show_clock+0x138>
+ 16a:	0f be 4d f9          	movsbl -0x7(%ebp),%ecx
+ 16e:	31 d2                	xor    %edx,%edx
+ 170:	b8 4a 00 00 00       	mov    $0x4a,%eax
+ 175:	e8 03 ff ff ff       	call   7d <printc_xy.935>
+ 17a:	c9                   	leave  
+ 17b:	c3                   	ret    
+ 17c:	b9 30 00 00 00       	mov    $0x30,%ecx
+ 181:	31 d2                	xor    %edx,%edx
+ 183:	b8 46 00 00 00       	mov    $0x46,%eax
+ 188:	e8 f0 fe ff ff       	call   7d <printc_xy.935>
+ 18d:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 194:	7f 91                	jg     127 <zeos_show_clock+0x85>
+ 196:	0f be 4d fc          	movsbl -0x4(%ebp),%ecx
+ 19a:	31 d2                	xor    %edx,%edx
+ 19c:	b8 47 00 00 00       	mov    $0x47,%eax
+ 1a1:	e8 d7 fe ff ff       	call   7d <printc_xy.935>
+ 1a6:	b9 3a 00 00 00       	mov    $0x3a,%ecx
+ 1ab:	31 d2                	xor    %edx,%edx
+ 1ad:	b8 48 00 00 00       	mov    $0x48,%eax
+ 1b2:	e8 c6 fe ff ff       	call   7d <printc_xy.935>
+ 1b7:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 1be:	7f 91                	jg     151 <zeos_show_clock+0xaf>
+ 1c0:	b9 30 00 00 00       	mov    $0x30,%ecx
+ 1c5:	31 d2                	xor    %edx,%edx
+ 1c7:	b8 49 00 00 00       	mov    $0x49,%eax
+ 1cc:	e8 ac fe ff ff       	call   7d <printc_xy.935>
+ 1d1:	83 3d 00 00 00 00 09 	cmpl   $0x9,0x0
+ 1d8:	7f 90                	jg     16a <zeos_show_clock+0xc8>
+ 1da:	0f be 4d f8          	movsbl -0x8(%ebp),%ecx
+ 1de:	31 d2                	xor    %edx,%edx
+ 1e0:	b8 4a 00 00 00       	mov    $0x4a,%eax
+ 1e5:	e8 93 fe ff ff       	call   7d <printc_xy.935>
+ 1ea:	c9                   	leave  
+ 1eb:	c3                   	ret    
+ 1ec:	c7 05 00 00 00 00 00 	movl   $0x0,0x0
+ 1f3:	00 00 00 
+ 1f6:	8b 15 00 00 00 00    	mov    0x0,%edx
+ 1fc:	83 c2 01             	add    $0x1,%edx
+ 1ff:	89 15 00 00 00 00    	mov    %edx,0x0
+ 205:	e9 d8 fe ff ff       	jmp    e2 <zeos_show_clock+0x40>
+
+0000020a <divide_error_routine>:
+ 20a:	55                   	push   %ebp
+ 20b:	89 e5                	mov    %esp,%ebp
+ 20d:	83 ec 08             	sub    $0x8,%esp
+ 210:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 217:	e8 fc ff ff ff       	call   218 <divide_error_routine+0xe>
+ 21c:	eb fe                	jmp    21c <divide_error_routine+0x12>
+
+0000021e <debug_routine>:
+ 21e:	55                   	push   %ebp
+ 21f:	89 e5                	mov    %esp,%ebp
+ 221:	83 ec 08             	sub    $0x8,%esp
+ 224:	c7 04 24 15 00 00 00 	movl   $0x15,(%esp)
+ 22b:	e8 fc ff ff ff       	call   22c <debug_routine+0xe>
+ 230:	eb fe                	jmp    230 <debug_routine+0x12>
+
+00000232 <nm1_routine>:
+ 232:	55                   	push   %ebp
+ 233:	89 e5                	mov    %esp,%ebp
+ 235:	83 ec 08             	sub    $0x8,%esp
+ 238:	c7 04 24 23 00 00 00 	movl   $0x23,(%esp)
+ 23f:	e8 fc ff ff ff       	call   240 <nm1_routine+0xe>
+ 244:	eb fe                	jmp    244 <nm1_routine+0x12>
+
+00000246 <breakpoint_routine>:
+ 246:	55                   	push   %ebp
+ 247:	89 e5                	mov    %esp,%ebp
+ 249:	83 ec 08             	sub    $0x8,%esp
+ 24c:	c7 04 24 2f 00 00 00 	movl   $0x2f,(%esp)
+ 253:	e8 fc ff ff ff       	call   254 <breakpoint_routine+0xe>
+ 258:	eb fe                	jmp    258 <breakpoint_routine+0x12>
+
+0000025a <overflow_routine>:
+ 25a:	55                   	push   %ebp
+ 25b:	89 e5                	mov    %esp,%ebp
+ 25d:	83 ec 08             	sub    $0x8,%esp
+ 260:	c7 04 24 42 00 00 00 	movl   $0x42,(%esp)
+ 267:	e8 fc ff ff ff       	call   268 <overflow_routine+0xe>
+ 26c:	eb fe                	jmp    26c <overflow_routine+0x12>
+
+0000026e <bounds_check_routine>:
+ 26e:	55                   	push   %ebp
+ 26f:	89 e5                	mov    %esp,%ebp
+ 271:	83 ec 08             	sub    $0x8,%esp
+ 274:	c7 04 24 53 00 00 00 	movl   $0x53,(%esp)
+ 27b:	e8 fc ff ff ff       	call   27c <bounds_check_routine+0xe>
+ 280:	eb fe                	jmp    280 <bounds_check_routine+0x12>
+
+00000282 <invalid_opcode_routine>:
+ 282:	55                   	push   %ebp
+ 283:	89 e5                	mov    %esp,%ebp
+ 285:	83 ec 08             	sub    $0x8,%esp
+ 288:	c7 04 24 68 00 00 00 	movl   $0x68,(%esp)
+ 28f:	e8 fc ff ff ff       	call   290 <invalid_opcode_routine+0xe>
+ 294:	eb fe                	jmp    294 <invalid_opcode_routine+0x12>
+
+00000296 <device_not_available_routine>:
+ 296:	55                   	push   %ebp
+ 297:	89 e5                	mov    %esp,%ebp
+ 299:	83 ec 08             	sub    $0x8,%esp
+ 29c:	c7 04 24 7f 00 00 00 	movl   $0x7f,(%esp)
+ 2a3:	e8 fc ff ff ff       	call   2a4 <device_not_available_routine+0xe>
+ 2a8:	eb fe                	jmp    2a8 <device_not_available_routine+0x12>
+
+000002aa <double_fault_routine>:
+ 2aa:	55                   	push   %ebp
+ 2ab:	89 e5                	mov    %esp,%ebp
+ 2ad:	83 ec 08             	sub    $0x8,%esp
+ 2b0:	c7 04 24 9c 00 00 00 	movl   $0x9c,(%esp)
+ 2b7:	e8 fc ff ff ff       	call   2b8 <double_fault_routine+0xe>
+ 2bc:	eb fe                	jmp    2bc <double_fault_routine+0x12>
+
+000002be <coprocessor_segment_overrun_routine>:
+ 2be:	55                   	push   %ebp
+ 2bf:	89 e5                	mov    %esp,%ebp
+ 2c1:	83 ec 08             	sub    $0x8,%esp
+ 2c4:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 2cb:	e8 fc ff ff ff       	call   2cc <coprocessor_segment_overrun_routine+0xe>
+ 2d0:	eb fe                	jmp    2d0 <coprocessor_segment_overrun_routine+0x12>
+
+000002d2 <invalid_tss_routine>:
+ 2d2:	55                   	push   %ebp
+ 2d3:	89 e5                	mov    %esp,%ebp
+ 2d5:	83 ec 08             	sub    $0x8,%esp
+ 2d8:	c7 04 24 ab 00 00 00 	movl   $0xab,(%esp)
+ 2df:	e8 fc ff ff ff       	call   2e0 <invalid_tss_routine+0xe>
+ 2e4:	eb fe                	jmp    2e4 <invalid_tss_routine+0x12>
+
+000002e6 <segment_not_present_routine>:
+ 2e6:	55                   	push   %ebp
+ 2e7:	89 e5                	mov    %esp,%ebp
+ 2e9:	83 ec 08             	sub    $0x8,%esp
+ 2ec:	c7 04 24 bf 00 00 00 	movl   $0xbf,(%esp)
+ 2f3:	e8 fc ff ff ff       	call   2f4 <segment_not_present_routine+0xe>
+ 2f8:	eb fe                	jmp    2f8 <segment_not_present_routine+0x12>
+
+000002fa <stack_exception_routine>:
+ 2fa:	55                   	push   %ebp
+ 2fb:	89 e5                	mov    %esp,%ebp
+ 2fd:	83 ec 08             	sub    $0x8,%esp
+ 300:	c7 04 24 db 00 00 00 	movl   $0xdb,(%esp)
+ 307:	e8 fc ff ff ff       	call   308 <stack_exception_routine+0xe>
+ 30c:	eb fe                	jmp    30c <stack_exception_routine+0x12>
+
+0000030e <general_protection_routine>:
+ 30e:	55                   	push   %ebp
+ 30f:	89 e5                	mov    %esp,%ebp
+ 311:	83 ec 08             	sub    $0x8,%esp
+ 314:	c7 04 24 f3 00 00 00 	movl   $0xf3,(%esp)
+ 31b:	e8 fc ff ff ff       	call   31c <general_protection_routine+0xe>
+ 320:	eb fe                	jmp    320 <general_protection_routine+0x12>
+
+00000322 <page_fault_routine>:
+ 322:	55                   	push   %ebp
+ 323:	89 e5                	mov    %esp,%ebp
+ 325:	83 ec 08             	sub    $0x8,%esp
+ 328:	c7 04 24 0e 01 00 00 	movl   $0x10e,(%esp)
+ 32f:	e8 fc ff ff ff       	call   330 <page_fault_routine+0xe>
+ 334:	eb fe                	jmp    334 <page_fault_routine+0x12>
+
+00000336 <intel_reserved_routine>:
+ 336:	55                   	push   %ebp
+ 337:	89 e5                	mov    %esp,%ebp
+ 339:	83 ec 08             	sub    $0x8,%esp
+ 33c:	c7 04 24 1b 01 00 00 	movl   $0x11b,(%esp)
+ 343:	e8 fc ff ff ff       	call   344 <intel_reserved_routine+0xe>
+ 348:	eb fe                	jmp    348 <intel_reserved_routine+0x12>
+
+0000034a <floating_point_error_routine>:
+ 34a:	55                   	push   %ebp
+ 34b:	89 e5                	mov    %esp,%ebp
+ 34d:	83 ec 08             	sub    $0x8,%esp
+ 350:	c7 04 24 32 01 00 00 	movl   $0x132,(%esp)
+ 357:	e8 fc ff ff ff       	call   358 <floating_point_error_routine+0xe>
+ 35c:	eb fe                	jmp    35c <floating_point_error_routine+0x12>
+
+0000035e <alignment_check_routine>:
+ 35e:	55                   	push   %ebp
+ 35f:	89 e5                	mov    %esp,%ebp
+ 361:	83 ec 08             	sub    $0x8,%esp
+ 364:	c7 04 24 49 01 00 00 	movl   $0x149,(%esp)
+ 36b:	e8 fc ff ff ff       	call   36c <alignment_check_routine+0xe>
+ 370:	eb fe                	jmp    370 <alignment_check_routine+0x12>
+
+00000372 <set_handlers>:
+ 372:	55                   	push   %ebp
+ 373:	89 e5                	mov    %esp,%ebp
+ 375:	83 ec 18             	sub    $0x18,%esp
+ 378:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 37f:	00 
+ 380:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 387:	00 
+ 388:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 38f:	e8 fc ff ff ff       	call   390 <set_handlers+0x1e>
+ 394:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 39b:	00 
+ 39c:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 3a3:	00 
+ 3a4:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+ 3ab:	e8 fc ff ff ff       	call   3ac <set_handlers+0x3a>
+ 3b0:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 3b7:	00 
+ 3b8:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 3bf:	00 
+ 3c0:	c7 04 24 02 00 00 00 	movl   $0x2,(%esp)
+ 3c7:	e8 fc ff ff ff       	call   3c8 <set_handlers+0x56>
+ 3cc:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 3d3:	00 
+ 3d4:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 3db:	00 
+ 3dc:	c7 04 24 03 00 00 00 	movl   $0x3,(%esp)
+ 3e3:	e8 fc ff ff ff       	call   3e4 <set_handlers+0x72>
+ 3e8:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 3ef:	00 
+ 3f0:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 3f7:	00 
+ 3f8:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)
+ 3ff:	e8 fc ff ff ff       	call   400 <set_handlers+0x8e>
+ 404:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 40b:	00 
+ 40c:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 413:	00 
+ 414:	c7 04 24 05 00 00 00 	movl   $0x5,(%esp)
+ 41b:	e8 fc ff ff ff       	call   41c <set_handlers+0xaa>
+ 420:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 427:	00 
+ 428:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 42f:	00 
+ 430:	c7 04 24 06 00 00 00 	movl   $0x6,(%esp)
+ 437:	e8 fc ff ff ff       	call   438 <set_handlers+0xc6>
+ 43c:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 443:	00 
+ 444:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 44b:	00 
+ 44c:	c7 04 24 07 00 00 00 	movl   $0x7,(%esp)
+ 453:	e8 fc ff ff ff       	call   454 <set_handlers+0xe2>
+ 458:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 45f:	00 
+ 460:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 467:	00 
+ 468:	c7 04 24 08 00 00 00 	movl   $0x8,(%esp)
+ 46f:	e8 fc ff ff ff       	call   470 <set_handlers+0xfe>
+ 474:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 47b:	00 
+ 47c:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 483:	00 
+ 484:	c7 04 24 09 00 00 00 	movl   $0x9,(%esp)
+ 48b:	e8 fc ff ff ff       	call   48c <set_handlers+0x11a>
+ 490:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 497:	00 
+ 498:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 49f:	00 
+ 4a0:	c7 04 24 0a 00 00 00 	movl   $0xa,(%esp)
+ 4a7:	e8 fc ff ff ff       	call   4a8 <set_handlers+0x136>
+ 4ac:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 4b3:	00 
+ 4b4:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 4bb:	00 
+ 4bc:	c7 04 24 0b 00 00 00 	movl   $0xb,(%esp)
+ 4c3:	e8 fc ff ff ff       	call   4c4 <set_handlers+0x152>
+ 4c8:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 4cf:	00 
+ 4d0:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 4d7:	00 
+ 4d8:	c7 04 24 0c 00 00 00 	movl   $0xc,(%esp)
+ 4df:	e8 fc ff ff ff       	call   4e0 <set_handlers+0x16e>
+ 4e4:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 4eb:	00 
+ 4ec:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 4f3:	00 
+ 4f4:	c7 04 24 0d 00 00 00 	movl   $0xd,(%esp)
+ 4fb:	e8 fc ff ff ff       	call   4fc <set_handlers+0x18a>
+ 500:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 507:	00 
+ 508:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 50f:	00 
+ 510:	c7 04 24 0e 00 00 00 	movl   $0xe,(%esp)
+ 517:	e8 fc ff ff ff       	call   518 <set_handlers+0x1a6>
+ 51c:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 523:	00 
+ 524:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 52b:	00 
+ 52c:	c7 04 24 0f 00 00 00 	movl   $0xf,(%esp)
+ 533:	e8 fc ff ff ff       	call   534 <set_handlers+0x1c2>
+ 538:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 53f:	00 
+ 540:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 547:	00 
+ 548:	c7 04 24 10 00 00 00 	movl   $0x10,(%esp)
+ 54f:	e8 fc ff ff ff       	call   550 <set_handlers+0x1de>
+ 554:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 55b:	00 
+ 55c:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 563:	00 
+ 564:	c7 04 24 11 00 00 00 	movl   $0x11,(%esp)
+ 56b:	e8 fc ff ff ff       	call   56c <set_handlers+0x1fa>
+ 570:	c9                   	leave  
+ 571:	c3                   	ret    
+
+zeos_entry.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <divide_error_handler>:
+   0:	0f a8                	push   %gs
+   2:	0f a0                	push   %fs
+   4:	06                   	push   %es
+   5:	1e                   	push   %ds
+   6:	50                   	push   %eax
+   7:	55                   	push   %ebp
+   8:	57                   	push   %edi
+   9:	56                   	push   %esi
+   a:	52                   	push   %edx
+   b:	51                   	push   %ecx
+   c:	53                   	push   %ebx
+   d:	ba 18 00 00 00       	mov    $0x18,%edx
+  12:	8e da                	mov    %edx,%ds
+  14:	8e c2                	mov    %edx,%es
+  16:	e8 fc ff ff ff       	call   17 <divide_error_handler+0x17>
+  1b:	5b                   	pop    %ebx
+  1c:	59                   	pop    %ecx
+  1d:	5a                   	pop    %edx
+  1e:	5e                   	pop    %esi
+  1f:	5f                   	pop    %edi
+  20:	5d                   	pop    %ebp
+  21:	58                   	pop    %eax
+  22:	1f                   	pop    %ds
+  23:	07                   	pop    %es
+  24:	0f a1                	pop    %fs
+  26:	0f a9                	pop    %gs
+  28:	cf                   	iret   
+
+00000029 <debug_handler>:
+  29:	0f a8                	push   %gs
+  2b:	0f a0                	push   %fs
+  2d:	06                   	push   %es
+  2e:	1e                   	push   %ds
+  2f:	50                   	push   %eax
+  30:	55                   	push   %ebp
+  31:	57                   	push   %edi
+  32:	56                   	push   %esi
+  33:	52                   	push   %edx
+  34:	51                   	push   %ecx
+  35:	53                   	push   %ebx
+  36:	ba 18 00 00 00       	mov    $0x18,%edx
+  3b:	8e da                	mov    %edx,%ds
+  3d:	8e c2                	mov    %edx,%es
+  3f:	e8 fc ff ff ff       	call   40 <debug_handler+0x17>
+  44:	5b                   	pop    %ebx
+  45:	59                   	pop    %ecx
+  46:	5a                   	pop    %edx
+  47:	5e                   	pop    %esi
+  48:	5f                   	pop    %edi
+  49:	5d                   	pop    %ebp
+  4a:	58                   	pop    %eax
+  4b:	1f                   	pop    %ds
+  4c:	07                   	pop    %es
+  4d:	0f a1                	pop    %fs
+  4f:	0f a9                	pop    %gs
+  51:	cf                   	iret   
+
+00000052 <nm1_handler>:
+  52:	0f a8                	push   %gs
+  54:	0f a0                	push   %fs
+  56:	06                   	push   %es
+  57:	1e                   	push   %ds
+  58:	50                   	push   %eax
+  59:	55                   	push   %ebp
+  5a:	57                   	push   %edi
+  5b:	56                   	push   %esi
+  5c:	52                   	push   %edx
+  5d:	51                   	push   %ecx
+  5e:	53                   	push   %ebx
+  5f:	ba 18 00 00 00       	mov    $0x18,%edx
+  64:	8e da                	mov    %edx,%ds
+  66:	8e c2                	mov    %edx,%es
+  68:	e8 fc ff ff ff       	call   69 <nm1_handler+0x17>
+  6d:	5b                   	pop    %ebx
+  6e:	59                   	pop    %ecx
+  6f:	5a                   	pop    %edx
+  70:	5e                   	pop    %esi
+  71:	5f                   	pop    %edi
+  72:	5d                   	pop    %ebp
+  73:	58                   	pop    %eax
+  74:	1f                   	pop    %ds
+  75:	07                   	pop    %es
+  76:	0f a1                	pop    %fs
+  78:	0f a9                	pop    %gs
+  7a:	cf                   	iret   
+
+0000007b <breakpoint_handler>:
+  7b:	0f a8                	push   %gs
+  7d:	0f a0                	push   %fs
+  7f:	06                   	push   %es
+  80:	1e                   	push   %ds
+  81:	50                   	push   %eax
+  82:	55                   	push   %ebp
+  83:	57                   	push   %edi
+  84:	56                   	push   %esi
+  85:	52                   	push   %edx
+  86:	51                   	push   %ecx
+  87:	53                   	push   %ebx
+  88:	ba 18 00 00 00       	mov    $0x18,%edx
+  8d:	8e da                	mov    %edx,%ds
+  8f:	8e c2                	mov    %edx,%es
+  91:	e8 fc ff ff ff       	call   92 <breakpoint_handler+0x17>
+  96:	5b                   	pop    %ebx
+  97:	59                   	pop    %ecx
+  98:	5a                   	pop    %edx
+  99:	5e                   	pop    %esi
+  9a:	5f                   	pop    %edi
+  9b:	5d                   	pop    %ebp
+  9c:	58                   	pop    %eax
+  9d:	1f                   	pop    %ds
+  9e:	07                   	pop    %es
+  9f:	0f a1                	pop    %fs
+  a1:	0f a9                	pop    %gs
+  a3:	cf                   	iret   
+
+000000a4 <overflow_handler>:
+  a4:	0f a8                	push   %gs
+  a6:	0f a0                	push   %fs
+  a8:	06                   	push   %es
+  a9:	1e                   	push   %ds
+  aa:	50                   	push   %eax
+  ab:	55                   	push   %ebp
+  ac:	57                   	push   %edi
+  ad:	56                   	push   %esi
+  ae:	52                   	push   %edx
+  af:	51                   	push   %ecx
+  b0:	53                   	push   %ebx
+  b1:	ba 18 00 00 00       	mov    $0x18,%edx
+  b6:	8e da                	mov    %edx,%ds
+  b8:	8e c2                	mov    %edx,%es
+  ba:	e8 fc ff ff ff       	call   bb <overflow_handler+0x17>
+  bf:	5b                   	pop    %ebx
+  c0:	59                   	pop    %ecx
+  c1:	5a                   	pop    %edx
+  c2:	5e                   	pop    %esi
+  c3:	5f                   	pop    %edi
+  c4:	5d                   	pop    %ebp
+  c5:	58                   	pop    %eax
+  c6:	1f                   	pop    %ds
+  c7:	07                   	pop    %es
+  c8:	0f a1                	pop    %fs
+  ca:	0f a9                	pop    %gs
+  cc:	cf                   	iret   
+
+000000cd <bounds_check_handler>:
+  cd:	0f a8                	push   %gs
+  cf:	0f a0                	push   %fs
+  d1:	06                   	push   %es
+  d2:	1e                   	push   %ds
+  d3:	50                   	push   %eax
+  d4:	55                   	push   %ebp
+  d5:	57                   	push   %edi
+  d6:	56                   	push   %esi
+  d7:	52                   	push   %edx
+  d8:	51                   	push   %ecx
+  d9:	53                   	push   %ebx
+  da:	ba 18 00 00 00       	mov    $0x18,%edx
+  df:	8e da                	mov    %edx,%ds
+  e1:	8e c2                	mov    %edx,%es
+  e3:	e8 fc ff ff ff       	call   e4 <bounds_check_handler+0x17>
+  e8:	5b                   	pop    %ebx
+  e9:	59                   	pop    %ecx
+  ea:	5a                   	pop    %edx
+  eb:	5e                   	pop    %esi
+  ec:	5f                   	pop    %edi
+  ed:	5d                   	pop    %ebp
+  ee:	58                   	pop    %eax
+  ef:	1f                   	pop    %ds
+  f0:	07                   	pop    %es
+  f1:	0f a1                	pop    %fs
+  f3:	0f a9                	pop    %gs
+  f5:	cf                   	iret   
+
+000000f6 <invalid_opcode_handler>:
+  f6:	0f a8                	push   %gs
+  f8:	0f a0                	push   %fs
+  fa:	06                   	push   %es
+  fb:	1e                   	push   %ds
+  fc:	50                   	push   %eax
+  fd:	55                   	push   %ebp
+  fe:	57                   	push   %edi
+  ff:	56                   	push   %esi
+ 100:	52                   	push   %edx
+ 101:	51                   	push   %ecx
+ 102:	53                   	push   %ebx
+ 103:	ba 18 00 00 00       	mov    $0x18,%edx
+ 108:	8e da                	mov    %edx,%ds
+ 10a:	8e c2                	mov    %edx,%es
+ 10c:	e8 fc ff ff ff       	call   10d <invalid_opcode_handler+0x17>
+ 111:	5b                   	pop    %ebx
+ 112:	59                   	pop    %ecx
+ 113:	5a                   	pop    %edx
+ 114:	5e                   	pop    %esi
+ 115:	5f                   	pop    %edi
+ 116:	5d                   	pop    %ebp
+ 117:	58                   	pop    %eax
+ 118:	1f                   	pop    %ds
+ 119:	07                   	pop    %es
+ 11a:	0f a1                	pop    %fs
+ 11c:	0f a9                	pop    %gs
+ 11e:	cf                   	iret   
+
+0000011f <device_not_available_handler>:
+ 11f:	0f a8                	push   %gs
+ 121:	0f a0                	push   %fs
+ 123:	06                   	push   %es
+ 124:	1e                   	push   %ds
+ 125:	50                   	push   %eax
+ 126:	55                   	push   %ebp
+ 127:	57                   	push   %edi
+ 128:	56                   	push   %esi
+ 129:	52                   	push   %edx
+ 12a:	51                   	push   %ecx
+ 12b:	53                   	push   %ebx
+ 12c:	ba 18 00 00 00       	mov    $0x18,%edx
+ 131:	8e da                	mov    %edx,%ds
+ 133:	8e c2                	mov    %edx,%es
+ 135:	e8 fc ff ff ff       	call   136 <device_not_available_handler+0x17>
+ 13a:	5b                   	pop    %ebx
+ 13b:	59                   	pop    %ecx
+ 13c:	5a                   	pop    %edx
+ 13d:	5e                   	pop    %esi
+ 13e:	5f                   	pop    %edi
+ 13f:	5d                   	pop    %ebp
+ 140:	58                   	pop    %eax
+ 141:	1f                   	pop    %ds
+ 142:	07                   	pop    %es
+ 143:	0f a1                	pop    %fs
+ 145:	0f a9                	pop    %gs
+ 147:	cf                   	iret   
+
+00000148 <double_fault_handler>:
+ 148:	0f a8                	push   %gs
+ 14a:	0f a0                	push   %fs
+ 14c:	06                   	push   %es
+ 14d:	1e                   	push   %ds
+ 14e:	50                   	push   %eax
+ 14f:	55                   	push   %ebp
+ 150:	57                   	push   %edi
+ 151:	56                   	push   %esi
+ 152:	52                   	push   %edx
+ 153:	51                   	push   %ecx
+ 154:	53                   	push   %ebx
+ 155:	ba 18 00 00 00       	mov    $0x18,%edx
+ 15a:	8e da                	mov    %edx,%ds
+ 15c:	8e c2                	mov    %edx,%es
+ 15e:	e8 fc ff ff ff       	call   15f <double_fault_handler+0x17>
+ 163:	5b                   	pop    %ebx
+ 164:	59                   	pop    %ecx
+ 165:	5a                   	pop    %edx
+ 166:	5e                   	pop    %esi
+ 167:	5f                   	pop    %edi
+ 168:	5d                   	pop    %ebp
+ 169:	58                   	pop    %eax
+ 16a:	1f                   	pop    %ds
+ 16b:	07                   	pop    %es
+ 16c:	0f a1                	pop    %fs
+ 16e:	0f a9                	pop    %gs
+ 170:	cf                   	iret   
+
+00000171 <coprocessor_segment_overrun_handler>:
+ 171:	0f a8                	push   %gs
+ 173:	0f a0                	push   %fs
+ 175:	06                   	push   %es
+ 176:	1e                   	push   %ds
+ 177:	50                   	push   %eax
+ 178:	55                   	push   %ebp
+ 179:	57                   	push   %edi
+ 17a:	56                   	push   %esi
+ 17b:	52                   	push   %edx
+ 17c:	51                   	push   %ecx
+ 17d:	53                   	push   %ebx
+ 17e:	ba 18 00 00 00       	mov    $0x18,%edx
+ 183:	8e da                	mov    %edx,%ds
+ 185:	8e c2                	mov    %edx,%es
+ 187:	e8 fc ff ff ff       	call   188 <coprocessor_segment_overrun_handler+0x17>
+ 18c:	5b                   	pop    %ebx
+ 18d:	59                   	pop    %ecx
+ 18e:	5a                   	pop    %edx
+ 18f:	5e                   	pop    %esi
+ 190:	5f                   	pop    %edi
+ 191:	5d                   	pop    %ebp
+ 192:	58                   	pop    %eax
+ 193:	1f                   	pop    %ds
+ 194:	07                   	pop    %es
+ 195:	0f a1                	pop    %fs
+ 197:	0f a9                	pop    %gs
+ 199:	cf                   	iret   
+
+0000019a <invalid_tss_handler>:
+ 19a:	0f a8                	push   %gs
+ 19c:	0f a0                	push   %fs
+ 19e:	06                   	push   %es
+ 19f:	1e                   	push   %ds
+ 1a0:	50                   	push   %eax
+ 1a1:	55                   	push   %ebp
+ 1a2:	57                   	push   %edi
+ 1a3:	56                   	push   %esi
+ 1a4:	52                   	push   %edx
+ 1a5:	51                   	push   %ecx
+ 1a6:	53                   	push   %ebx
+ 1a7:	ba 18 00 00 00       	mov    $0x18,%edx
+ 1ac:	8e da                	mov    %edx,%ds
+ 1ae:	8e c2                	mov    %edx,%es
+ 1b0:	e8 fc ff ff ff       	call   1b1 <invalid_tss_handler+0x17>
+ 1b5:	5b                   	pop    %ebx
+ 1b6:	59                   	pop    %ecx
+ 1b7:	5a                   	pop    %edx
+ 1b8:	5e                   	pop    %esi
+ 1b9:	5f                   	pop    %edi
+ 1ba:	5d                   	pop    %ebp
+ 1bb:	58                   	pop    %eax
+ 1bc:	1f                   	pop    %ds
+ 1bd:	07                   	pop    %es
+ 1be:	0f a1                	pop    %fs
+ 1c0:	0f a9                	pop    %gs
+ 1c2:	cf                   	iret   
+
+000001c3 <segment_not_present_handler>:
+ 1c3:	0f a8                	push   %gs
+ 1c5:	0f a0                	push   %fs
+ 1c7:	06                   	push   %es
+ 1c8:	1e                   	push   %ds
+ 1c9:	50                   	push   %eax
+ 1ca:	55                   	push   %ebp
+ 1cb:	57                   	push   %edi
+ 1cc:	56                   	push   %esi
+ 1cd:	52                   	push   %edx
+ 1ce:	51                   	push   %ecx
+ 1cf:	53                   	push   %ebx
+ 1d0:	ba 18 00 00 00       	mov    $0x18,%edx
+ 1d5:	8e da                	mov    %edx,%ds
+ 1d7:	8e c2                	mov    %edx,%es
+ 1d9:	e8 fc ff ff ff       	call   1da <segment_not_present_handler+0x17>
+ 1de:	5b                   	pop    %ebx
+ 1df:	59                   	pop    %ecx
+ 1e0:	5a                   	pop    %edx
+ 1e1:	5e                   	pop    %esi
+ 1e2:	5f                   	pop    %edi
+ 1e3:	5d                   	pop    %ebp
+ 1e4:	58                   	pop    %eax
+ 1e5:	1f                   	pop    %ds
+ 1e6:	07                   	pop    %es
+ 1e7:	0f a1                	pop    %fs
+ 1e9:	0f a9                	pop    %gs
+ 1eb:	cf                   	iret   
+
+000001ec <stack_exception_handler>:
+ 1ec:	0f a8                	push   %gs
+ 1ee:	0f a0                	push   %fs
+ 1f0:	06                   	push   %es
+ 1f1:	1e                   	push   %ds
+ 1f2:	50                   	push   %eax
+ 1f3:	55                   	push   %ebp
+ 1f4:	57                   	push   %edi
+ 1f5:	56                   	push   %esi
+ 1f6:	52                   	push   %edx
+ 1f7:	51                   	push   %ecx
+ 1f8:	53                   	push   %ebx
+ 1f9:	ba 18 00 00 00       	mov    $0x18,%edx
+ 1fe:	8e da                	mov    %edx,%ds
+ 200:	8e c2                	mov    %edx,%es
+ 202:	e8 fc ff ff ff       	call   203 <stack_exception_handler+0x17>
+ 207:	5b                   	pop    %ebx
+ 208:	59                   	pop    %ecx
+ 209:	5a                   	pop    %edx
+ 20a:	5e                   	pop    %esi
+ 20b:	5f                   	pop    %edi
+ 20c:	5d                   	pop    %ebp
+ 20d:	58                   	pop    %eax
+ 20e:	1f                   	pop    %ds
+ 20f:	07                   	pop    %es
+ 210:	0f a1                	pop    %fs
+ 212:	0f a9                	pop    %gs
+ 214:	cf                   	iret   
+
+00000215 <general_protection_handler>:
+ 215:	0f a8                	push   %gs
+ 217:	0f a0                	push   %fs
+ 219:	06                   	push   %es
+ 21a:	1e                   	push   %ds
+ 21b:	50                   	push   %eax
+ 21c:	55                   	push   %ebp
+ 21d:	57                   	push   %edi
+ 21e:	56                   	push   %esi
+ 21f:	52                   	push   %edx
+ 220:	51                   	push   %ecx
+ 221:	53                   	push   %ebx
+ 222:	ba 18 00 00 00       	mov    $0x18,%edx
+ 227:	8e da                	mov    %edx,%ds
+ 229:	8e c2                	mov    %edx,%es
+ 22b:	e8 fc ff ff ff       	call   22c <general_protection_handler+0x17>
+ 230:	5b                   	pop    %ebx
+ 231:	59                   	pop    %ecx
+ 232:	5a                   	pop    %edx
+ 233:	5e                   	pop    %esi
+ 234:	5f                   	pop    %edi
+ 235:	5d                   	pop    %ebp
+ 236:	58                   	pop    %eax
+ 237:	1f                   	pop    %ds
+ 238:	07                   	pop    %es
+ 239:	0f a1                	pop    %fs
+ 23b:	0f a9                	pop    %gs
+ 23d:	cf                   	iret   
+
+0000023e <page_fault_handler>:
+ 23e:	0f a8                	push   %gs
+ 240:	0f a0                	push   %fs
+ 242:	06                   	push   %es
+ 243:	1e                   	push   %ds
+ 244:	50                   	push   %eax
+ 245:	55                   	push   %ebp
+ 246:	57                   	push   %edi
+ 247:	56                   	push   %esi
+ 248:	52                   	push   %edx
+ 249:	51                   	push   %ecx
+ 24a:	53                   	push   %ebx
+ 24b:	ba 18 00 00 00       	mov    $0x18,%edx
+ 250:	8e da                	mov    %edx,%ds
+ 252:	8e c2                	mov    %edx,%es
+ 254:	e8 fc ff ff ff       	call   255 <page_fault_handler+0x17>
+ 259:	5b                   	pop    %ebx
+ 25a:	59                   	pop    %ecx
+ 25b:	5a                   	pop    %edx
+ 25c:	5e                   	pop    %esi
+ 25d:	5f                   	pop    %edi
+ 25e:	5d                   	pop    %ebp
+ 25f:	58                   	pop    %eax
+ 260:	1f                   	pop    %ds
+ 261:	07                   	pop    %es
+ 262:	0f a1                	pop    %fs
+ 264:	0f a9                	pop    %gs
+ 266:	cf                   	iret   
+
+00000267 <intel_reserved_handler>:
+ 267:	0f a8                	push   %gs
+ 269:	0f a0                	push   %fs
+ 26b:	06                   	push   %es
+ 26c:	1e                   	push   %ds
+ 26d:	50                   	push   %eax
+ 26e:	55                   	push   %ebp
+ 26f:	57                   	push   %edi
+ 270:	56                   	push   %esi
+ 271:	52                   	push   %edx
+ 272:	51                   	push   %ecx
+ 273:	53                   	push   %ebx
+ 274:	ba 18 00 00 00       	mov    $0x18,%edx
+ 279:	8e da                	mov    %edx,%ds
+ 27b:	8e c2                	mov    %edx,%es
+ 27d:	e8 fc ff ff ff       	call   27e <intel_reserved_handler+0x17>
+ 282:	5b                   	pop    %ebx
+ 283:	59                   	pop    %ecx
+ 284:	5a                   	pop    %edx
+ 285:	5e                   	pop    %esi
+ 286:	5f                   	pop    %edi
+ 287:	5d                   	pop    %ebp
+ 288:	58                   	pop    %eax
+ 289:	1f                   	pop    %ds
+ 28a:	07                   	pop    %es
+ 28b:	0f a1                	pop    %fs
+ 28d:	0f a9                	pop    %gs
+ 28f:	cf                   	iret   
+
+00000290 <floating_point_error_handler>:
+ 290:	0f a8                	push   %gs
+ 292:	0f a0                	push   %fs
+ 294:	06                   	push   %es
+ 295:	1e                   	push   %ds
+ 296:	50                   	push   %eax
+ 297:	55                   	push   %ebp
+ 298:	57                   	push   %edi
+ 299:	56                   	push   %esi
+ 29a:	52                   	push   %edx
+ 29b:	51                   	push   %ecx
+ 29c:	53                   	push   %ebx
+ 29d:	ba 18 00 00 00       	mov    $0x18,%edx
+ 2a2:	8e da                	mov    %edx,%ds
+ 2a4:	8e c2                	mov    %edx,%es
+ 2a6:	e8 fc ff ff ff       	call   2a7 <floating_point_error_handler+0x17>
+ 2ab:	5b                   	pop    %ebx
+ 2ac:	59                   	pop    %ecx
+ 2ad:	5a                   	pop    %edx
+ 2ae:	5e                   	pop    %esi
+ 2af:	5f                   	pop    %edi
+ 2b0:	5d                   	pop    %ebp
+ 2b1:	58                   	pop    %eax
+ 2b2:	1f                   	pop    %ds
+ 2b3:	07                   	pop    %es
+ 2b4:	0f a1                	pop    %fs
+ 2b6:	0f a9                	pop    %gs
+ 2b8:	cf                   	iret   
+
+000002b9 <alignment_check_handler>:
+ 2b9:	0f a8                	push   %gs
+ 2bb:	0f a0                	push   %fs
+ 2bd:	06                   	push   %es
+ 2be:	1e                   	push   %ds
+ 2bf:	50                   	push   %eax
+ 2c0:	55                   	push   %ebp
+ 2c1:	57                   	push   %edi
+ 2c2:	56                   	push   %esi
+ 2c3:	52                   	push   %edx
+ 2c4:	51                   	push   %ecx
+ 2c5:	53                   	push   %ebx
+ 2c6:	ba 18 00 00 00       	mov    $0x18,%edx
+ 2cb:	8e da                	mov    %edx,%ds
+ 2cd:	8e c2                	mov    %edx,%es
+ 2cf:	e8 fc ff ff ff       	call   2d0 <alignment_check_handler+0x17>
+ 2d4:	5b                   	pop    %ebx
+ 2d5:	59                   	pop    %ecx
+ 2d6:	5a                   	pop    %edx
+ 2d7:	5e                   	pop    %esi
+ 2d8:	5f                   	pop    %edi
+ 2d9:	5d                   	pop    %ebp
+ 2da:	58                   	pop    %eax
+ 2db:	1f                   	pop    %ds
+ 2dc:	07                   	pop    %es
+ 2dd:	0f a1                	pop    %fs
+ 2df:	0f a9                	pop    %gs
+ 2e1:	cf                   	iret   
+
+zeos_mm.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <monoprocess_init_addr_space>:
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 ec 08             	sub    $0x8,%esp
+   6:	a1 00 00 00 00       	mov    0x0,%eax
+   b:	89 04 24             	mov    %eax,(%esp)
+   e:	e8 fc ff ff ff       	call   f <monoprocess_init_addr_space+0xf>
+  13:	a1 00 00 00 00       	mov    0x0,%eax
+  18:	89 04 24             	mov    %eax,(%esp)
+  1b:	e8 fc ff ff ff       	call   1c <monoprocess_init_addr_space+0x1c>
+  20:	89 04 24             	mov    %eax,(%esp)
+  23:	e8 fc ff ff ff       	call   24 <monoprocess_init_addr_space+0x24>
+  28:	c9                   	leave  
+  29:	c3                   	ret    

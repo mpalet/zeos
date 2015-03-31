@@ -21,3 +21,6 @@ private_colormap: enabled=0
 keyboard_mapping: enabled=0, map=
 
 gdbstub: enabled=1, port=1234, text_base=0, data_base=0, bss_base=0
+
+display_library: sdl
+

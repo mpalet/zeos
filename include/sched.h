@@ -18,7 +18,7 @@ struct task_struct {
   int PID;			/* Process ID. This MUST be the first field of the struct. */
   page_table_entry * dir_pages_baseAddr;
   struct list_head list; //PCB list anchor
-	unsigned long * kernel_esp; //Kernel esp pointer
+  unsigned long * kernel_esp; //Kernel esp pointer
 };
 
 union task_union {
@@ -45,6 +45,8 @@ void init_sched(void);
 struct task_struct * current();
 
 void task_switch(union task_union*t);
+
+void inner_task_switch(union task_union*t);
 
 struct task_struct *list_head_to_task_struct(struct list_head *l);
 
