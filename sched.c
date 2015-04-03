@@ -336,12 +336,12 @@ void sched_next_rr(void) {
 		//get next ready process
 		e = list_first(&readyqueue);
   		next = list_entry(e, struct task_struct, list);
+
+	  	update_process_state_rr(next, NULL);
 	}
 	else {
 		next = idle_task;
 	}
-
-  	update_process_state_rr(next, NULL);
 
 	//reset current task tick counter and switch task
 	current_task_ticks = 0;

@@ -132,4 +132,8 @@ int fork() {
   }
 }
 
+void exit() {
+  generate_sys_trap(SYSCALL_EXIT, 0, 0, 0);
+}
+
 

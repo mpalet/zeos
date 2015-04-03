@@ -266,24 +266,6 @@ int sys_fork()
   child->kernel_esp = child_esp;
 
 
-  // int register_ebp;   /* frame pointer */
-  // /* Map Parent's ebp to child's stack */
-  // __asm__ __volatile__ (
-  //   "movl %%ebp, %0\n\t"
-  //     : "=g" (register_ebp)
-  //     : );
-  // register_ebp=(register_ebp - (int)current()) + (int)(uchild);
-
-  // uchild->task.kernel_esp=register_ebp + sizeof(DWord);
-  
-  // DWord temp_ebp=*(DWord*)register_ebp;
-  // /* Prepare child stack for context switch */
-  // uchild->task.kernel_esp-=sizeof(DWord);
-  // *(DWord*)(uchild->task.kernel_esp)=(DWord)&ret_from_fork;
-  // uchild->task.kernel_esp-=sizeof(DWord);
-  // *(DWord*)(uchild->task.kernel_esp)=temp_ebp;
-
-
   /*Insert the new process into the ready list: readyqueue. This list will contain all processes
   that are ready to execute but there is no processor to run them.  */
   list_add_tail(&(child->list), &readyqueue);
@@ -293,7 +275,22 @@ int sys_fork()
 }
 
 void sys_exit()
-{  
+{
+  /*  Free the data structures and resources of this process (physical memory, task_struct,
+  and so). It uses the free_frame function to free physical pages.
+  Use the scheduler interface to select a new process to be executed and make a context
+  switch.
+  */
+  int pag;
+  page_table_entry *proc_PT = get_PT(current());
+
+  //free process data frames
+  for (pag=PAG_LOG_INIT_DATA_P0;pag<PAG_LOG_INIT_DATA_P0+NUM_PAG_DATA;pag++){
+    free_frame(get_frame(proc_PT,pag));
+    del_ss_pag(proc_PT, pag);
+  }
+  list_add_tail(&(current()->list), &freequeue);
+  sched_next_rr();
 }
 
 /*
