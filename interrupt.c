@@ -7,6 +7,7 @@
 #include <hardware.h>
 #include <io.h>
 #include <entry.h>
+#include <sched.h>
 
 #include <zeos_interrupt.h>
 
@@ -117,6 +118,10 @@ void keyboard_rsi() {
 void clock_rsi() {
   zeos_ticks++;
   zeos_show_clock();
+
+  //scheduler
+  scheduler();
+  
 }
 
 

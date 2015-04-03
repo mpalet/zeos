@@ -8,6 +8,8 @@
 
 #include <stats.h>
 
+extern int errno;
+
 void perror();
 
 int write(int fd, char *buffer, int size);
@@ -18,8 +20,12 @@ int strlen(char *a);
 
 int getpid();
 
+int gettime();
+
 int fork();
 
 void exit();
+
+
 
 #endif  /* __LIBC_H__ */

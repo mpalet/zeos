@@ -162,7 +162,7 @@ void setGdt()
 void setTSS()
 {
   tss.PreviousTaskLink   = NULL;
-  tss.esp0               = INITIAL_ESP; //pila del proces init
+  tss.esp0               = INITIAL_ESP; //pila del proces idle
   tss.ss0                = __KERNEL_DS;
   tss.esp1               = NULL;
   tss.ss1                = NULL;

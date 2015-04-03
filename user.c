@@ -7,18 +7,33 @@ int pid;
 int __attribute__ ((__section__(".text.main")))
   main(void)
 {
-    /* Next line, tries to move value 0 to CR3 register. This register is a privileged one, and so it will raise an exception */
-     /* __asm__ __volatile__ ("mov %0, %%cr3"::"r" (0) ); */
-
+  int a;
   char* text = "\nUser code: hola que tal?\n";
   write(1,text,strlen(text));
 
   char* text2 = "             0";
 
-  while(1) {
-    int a=gettime();
+  while(1) {  
+    write(1,"PID: ",strlen("PID: "));
+      a=getpid();
+      itoa(a,text2);
+      write(1,text2,strlen(text2));
+      write(1,"         \n",strlen("         \n"));
+
+    a=gettime();
     itoa(a,text2);
     write(1,text2,strlen(text2));
-    write(1,"\n",strlen("\n"));
- }
+    write(1,"         \n",strlen("         \n"));
+
+    if (a%1000 == 99) {
+      write(1,"       fork: ",strlen("       fork: "));
+      a=fork();
+      if (a < 0)
+        a = errno;
+
+      itoa(a,text2);
+      write(1,text2,strlen(text2));
+      write(1,"         \n",strlen("         \n"));
+    }
+  }
 }

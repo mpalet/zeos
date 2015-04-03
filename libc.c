@@ -14,8 +14,16 @@ void itoa(int a, char *b)
   char c;
   
   if (a==0) { b[0]='0'; b[1]=0; return ;}
-  
+
   i=0;
+
+  if (a<0) {
+    b[0] = '-';
+    a = -a;
+    i++;
+  }
+  
+  
   while (a>0)
   {
     b[i]=(a%10)+'0';
@@ -101,4 +109,27 @@ int gettime() {
     return -1;
   }
 }
+
+int getpid() {
+  int res = generate_sys_trap(SYSCALL_GETPID, 0, 0, 0);
+  
+  if (res >= 0)
+    return res;
+  else {
+    errno = res;
+    return -1;
+  }
+}
+
+int fork() {
+  int res = generate_sys_trap(SYSCALL_FORK, 0, 0, 0);
+  
+  if (res >= 0)
+    return res;
+  else {
+    errno = res;
+    return -1;
+  }
+}
+
 

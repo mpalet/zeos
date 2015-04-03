@@ -1,0 +1,519 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ready",
+				"readyqueue"
+			],
+			[
+				"current",
+				"current_task_ticks"
+			],
+			[
+				"new",
+				"new_ph_pag"
+			],
+			[
+				"kerne",
+				"kernel_esp"
+			],
+			[
+				"new_task",
+				"new_task_struct"
+			],
+			[
+				"stack",
+				"stack_base"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "sched.c",
+			"settings":
+			{
+				"buffer_size": 8512,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "user.c",
+			"settings":
+			{
+				"buffer_size": 810,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/sched.h",
+			"settings":
+			{
+				"buffer_size": 1828,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "list.c",
+			"settings":
+			{
+				"buffer_size": 2178,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "interrupt.c",
+			"settings":
+			{
+				"buffer_size": 4652,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sys.c",
+			"settings":
+			{
+				"buffer_size": 6830,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 784.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 808.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/marc/zeos",
+		"/home/marc/zeos/include"
+	],
+	"file_history":
+	[
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/Makefile",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/8.barrier.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/7.parallel-ok.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/6.parallel-all.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/5.parallel.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/4.data_sharing.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/3.how_many.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/2.hello.c",
+		"/home/marc/Dropbox/FIB/PAR/LAB/lab0/openmp/basics/1.hello.c",
+		"/home/marc/zeos/sys.c",
+		"/home/marc/zeos/user.c",
+		"/home/marc/zeos/include/codes.h",
+		"/home/marc/zeos/include/libc.h",
+		"/home/marc/zeos/libc.c",
+		"/home/marc/zeos/system.dissassemble",
+		"/home/marc/zeos/include/sched.h",
+		"/home/marc/zeos/mm.c",
+		"/home/marc/zeos/utils.c",
+		"/home/marc/zeos/entry.S",
+		"/home/marc/zeos/include/entry.h",
+		"/home/marc/zeos/include/mm_address.h",
+		"/home/marc/zeos/devices.c",
+		"/home/marc/zeos/interrupt.c",
+		"/home/marc/zeos/sys_call_table.S",
+		"/home/marc/zeos/hardware.c",
+		"/home/marc/zeos/system.c",
+		"/home/marc/zeos/sched.c",
+		"/home/marc/zeos/user",
+		"/home/marc/zeos/include/segment.h",
+		"/home/marc/zeos/include/mm.h",
+		"/home/marc/zeos/.bochsrc",
+		"/home/marc/zeos/.bochsrc_gdb",
+		"/home/marc/zeos/.gdbinit",
+		"/home/marc/zeos/include/zeos_interrupt.h",
+		"/home/marc/zeos/include/types.h",
+		"/home/marc/zeos/include/list.h",
+		"/home/marc/zeos/list.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v20.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v0.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v19.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v18.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v17.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v16.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v15.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v14.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v13.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v21.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v12.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v8.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v9.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v10.c",
+		"/run/user/1000/gvfs/sftp:host=boada.ac.upc.edu/scratch/nas/1/par2102/lab0/openmp/pi/pi-v11.c",
+		"/home/marc/RAM_booster/extras_14.04/RAM_Session/redit",
+		"/home/marc/RAM_booster/RAM_booster_Ubuntu_14.04_ng_BETA.sh"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 182.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"current",
+			"zeos_ticks",
+			"fe0ab",
+			"116a8",
+			"TASK_UNION",
+			"ret_from_fork",
+			"fork",
+			"get_dir",
+			"get_pt",
+			"set",
+			"page_table",
+			"allocate_DIR",
+			"copy_data",
+			"blocked",
+			"CURRENT",
+			"task1",
+			"022fe8",
+			"fffffff0",
+			"10a40",
+			"fe1b9",
+			"switch",
+			"jmpf 0xf000",
+			"fffffff0",
+			"current",
+			"task_union",
+			"current",
+			"asm",
+			"inner",
+			"task_switch",
+			"task",
+			"TASK",
+			"tss",
+			"get_DIR",
+			"TSS",
+			"INITIAL_ESP",
+			"INITIAL",
+			"tss",
+			"return_gate",
+			"__KERNEL_DS",
+			"idle",
+			"current",
+			"ready"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "sched.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8512,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8138,
+								8138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 10533.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "user.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 810,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								43,
+								43
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "include/sched.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1828,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								278,
+								278
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 105.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "list.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2178,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1908,
+								1908
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "interrupt.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4037,
+								4037
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3848.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "sys.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5435,
+								5435
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 4935.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 43.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "zeos.sublime-project",
+	"replace":
+	{
+		"height": 82.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"list",
+				"list.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 300.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

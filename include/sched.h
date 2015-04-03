@@ -8,9 +8,11 @@
 #include <list.h>
 #include <types.h>
 #include <mm_address.h>
+#include <stats.h>
 
 #define NR_TASKS      10
 #define KERNEL_STACK_SIZE	1024
+#define RR_DEFAULT_QUANTUM	10
 
 enum state_t { ST_RUN, ST_READY, ST_BLOCKED };
 
@@ -18,7 +20,9 @@ struct task_struct {
   int PID;			/* Process ID. This MUST be the first field of the struct. */
   page_table_entry * dir_pages_baseAddr;
   struct list_head list; //PCB list anchor
-  unsigned long * kernel_esp; //Kernel esp pointer
+  unsigned long kernel_esp; //Kernel esp
+  int quantum;
+  struct stats stats;
 };
 
 union task_union {
@@ -28,12 +32,15 @@ union task_union {
 
 extern union task_union protected_tasks[NR_TASKS+2];
 extern union task_union *task; /* Vector de tasques */
-extern struct task_struct *idle_task;
+extern struct task_struct *idle_task, *task1;
+extern struct list_head freequeue, readyqueue;
 
 
 #define KERNEL_ESP(t)       	(DWord) &(t)->stack[KERNEL_STACK_SIZE]
 
 #define INITIAL_ESP       	KERNEL_ESP(&task[1])
+
+#define TASK_UNION(s)	((union task_union *)(s))
 
 /* Inicialitza les dades del proces inicial */
 void init_task1(void);
@@ -61,5 +68,10 @@ void sched_next_rr();
 void update_process_state_rr(struct task_struct *t, struct list_head *dest);
 int needs_sched_rr();
 void update_sched_data_rr();
+
+//round robin scheduler routine
+void scheduler();
+
+int get_new_PID();
 
 #endif  /* __SCHED_H__ */
